@@ -6,3 +6,4 @@ dist
 .idx/dev.nix
 *.log
 *.log.gz
+logs
