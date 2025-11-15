@@ -1,0 +1,65 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # ------------------------------------------------------------------
+  # JOB 1: Quality Assurance (CI)
+  # Runs on every Push and PR
+  # ------------------------------------------------------------------
+  quality-check:
+    name: 🧪 CI - Test & Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: 🔍 Lint Code
+        # Ensures code style consistency
+        run: npm run lint
+
+      - name: 📐 Type Check
+        # Runs `tsc` to ensure no TypeScript errors exist
+        run: npm run build
+
+      - name: 🧪 Run Tests
+        # Runs Jest
+        run: npm test
+
+      - name: 🐳 Docker Build Check
+        # Verifies the Dockerfile is valid before we attempt deployment
+        run: docker build . --file Dockerfile --tag deployhub-backend:test
+
+  # ------------------------------------------------------------------
+  # JOB 2: Delivery (CD)
+  # Runs ONLY on 'main' branch and ONLY if 'quality-check' passes
+  # ------------------------------------------------------------------
+  deploy:
+    name: 🚀 CD - Deploy to Production
+    needs: quality-check
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Trigger Render Deployment
+        # This uses a Deploy Hook (Webhook) to tell Render/Railway to pull the new image
+        run: |
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
+            echo "::error::RENDER_DEPLOY_HOOK_URL secret is missing"
+            exit 1
+          fi
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
