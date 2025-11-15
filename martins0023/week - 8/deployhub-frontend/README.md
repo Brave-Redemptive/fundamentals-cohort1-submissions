@@ -3,7 +3,7 @@
 
 ### 2. Frontend README (`deployhub-frontend/README.md`)
 
-```markdown
+
 # DeployHub Dashboard 🖥️
 
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)
@@ -53,7 +53,7 @@
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/deployhub-frontend.git](https://github.com/YOUR_USERNAME/deployhub-frontend.git)
+    git clone [https://github.com/martins0023/fundamentals-cohort1-submissions/tree/main/martins0023/week%20-%208/deployhub-frontend](https://github.com/martins0023/fundamentals-cohort1-submissions/tree/main/martins0023/week%20-%208/deployhub-frontend)
     cd deployhub-frontend
     ```
 
@@ -85,7 +85,7 @@ The application relies on specific environment variables to connect to the backe
 | :--- | :--- | :--- |
 | `VITE_API_URL` | The base URL of the DeployHub Backend API | `http://localhost:3000` |
 
-*In production (Vercel), this variable must be set to your Render/Railway Backend URL (e.g., `https://deployhub-backend.onrender.com`).*
+*In production (Vercel), this variable must be set to Render Backend URL (e.g., `https://deployhub-backend.onrender.com`).*
 
 ---
 
