@@ -1,0 +1,14 @@
+name: Frontend Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # Add Vercel Action or similar here
+      - run: echo "Deploying to Vercel/Netlify..."
