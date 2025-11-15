@@ -70,7 +70,7 @@ This project moves beyond `console.log` to implement the three pillars of observ
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/deployhub-backend.git](https://github.com/YOUR_USERNAME/deployhub-backend.git)
+    git clone [[https://github.com/YOUR_USERNAME/deployhub-backend.git](https://github.com/YOUR_USERNAME/deployhub-backend.git)]
     cd deployhub-backend
     ```
 
