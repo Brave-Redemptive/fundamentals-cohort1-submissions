@@ -153,11 +153,11 @@ Includes:
 
 ## 🌐 Deployment
 
-Service URL
+Service URL [https://deployhub-backend-new.onrender.com]
 Backend API To be added after deployment
 
-- Health Check /api/health
-- Metrics /api/metrics
+- Health Check [https://deployhub-backend-new.onrender.com]/api/health
+- Metrics [https://deployhub-backend-new.onrender.com]/api/metrics
 
 ## 🔄 CI/CD
 
