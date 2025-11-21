@@ -116,4 +116,8 @@ http://localhost:3000
 2. Visit `http://localhost:3000`.
 3. Register or login.
 4. Explore Activities, Doctors, and Appointments.
+<<<<<<< HEAD
 5. Watch network calls for `/health-check` pings and login analytics events if you want proof that it is working.
+=======
+5. Watch network calls for `/health-check` pings and login analytics events if you want proof that it is working.
+>>>>>>> a8e71cd (Fix: added readme documentation.)
