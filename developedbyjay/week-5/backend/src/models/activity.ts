@@ -17,7 +17,6 @@ const ActivitySchema = new Schema<IActivity>(
   },
   {
     timestamps: true,
-    
   }
 );
 ActivitySchema.index({ createdAt: -1 });
