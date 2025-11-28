@@ -1,0 +1,46 @@
+name: SyncForge CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job 1: Check Backend
+  backend-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend # Important: Points to backend folder
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - name: Install Dependencies
+      run: npm ci
+    - name: Run Linter
+      run: npm run lint --if-present
+    - name: Build Project (Type Check)
+      run: npm run build
+
+  # Job 2: Check Frontend
+  # frontend-check:
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./frontend # Important: Points to frontend folder
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Use Node.js
+  #     uses: actions/setup-node@v3
+  #     with:
+  #       node-version: '18.x'
+  #   - name: Install Dependencies
+  #     run: npm install
+  #   - name: Run Linter
+  #     run: npm run lint --if-present
+  #   - name: Build Project
+  #     run: npm run build

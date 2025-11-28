@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    "lib": ["es6"],
+
+    /* Modules */
+    "module": "commonjs",
+    "moduleResolution": "node",
+    
+    /* This is the setting causing your error - set it to false */
+    "verbatimModuleSyntax": false, 
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    /* Emit */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true
+  }
+}

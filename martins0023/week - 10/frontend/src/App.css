@@ -1,0 +1,15 @@
+.app-header {
+  background-color: var(--white);
+  padding: 1rem 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
