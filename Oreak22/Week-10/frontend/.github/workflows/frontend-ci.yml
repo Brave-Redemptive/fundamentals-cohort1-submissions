@@ -1,0 +1,38 @@
+name: Frontend CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+      - fix/**
+  pull_request:
+     branches:
+      - main
+      - develop
+      - feature/**
+      - fix/**
+
+defaults:
+  run:
+    working-directory: ./syncforge-frontend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
