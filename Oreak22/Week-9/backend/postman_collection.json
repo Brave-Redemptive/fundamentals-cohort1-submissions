@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "LegacyBridge Backend",
+    "_postman_id": "legacybridge-backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get payments v2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v2/payments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v2", "payments"]
+        }
+      }
+    },
+    {
+      "name": "Get payment by id",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/v2/payments/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v2", "payments", "1"]
+        }
+      }
+    },
+    {
+      "name": "Get customers v2",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/v2/customers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v2", "customers"]
+        }
+      }
+    }
+  ]
+}

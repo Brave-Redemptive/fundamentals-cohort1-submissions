@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { User } from "../models/user.models";
 import bcrypt from "bcryptjs";

@@ -1,7 +1,9 @@
 import express from "express";
 const cors = require("cors");
+// import cors from "cors";
 import dotenv from "dotenv";
 const cookieParser = require("cookie-parser");
+// import cookieParser from "cookie-parser";
 import authRoutes from "./routers/auth.Routes";
 import taskRoutes from "./routers/task.routes";
 import mongoose from "mongoose";

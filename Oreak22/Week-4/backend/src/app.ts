@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import mongoose from "mongoose";
-import authRoutes from "./routers/auth.Routes.js";
-import projectRoutes from "./routers/project.routes.js";
+import authRoutes from "./routers/auth.Routes";
+import projectRoutes from "./routers/project.routes";
 dotenv.config();
 const app = express();
 
@@ -29,8 +29,9 @@ app.use(helmet());
 app.use("/api/auth", authRoutes);
 app.use("/api/project", projectRoutes);
 
-// app.listen(process.env.PORT, () =>
-//   console.log(`Server running on port ${process.env.PORT}`)
-// );
+const PORT = process.env.PORT || 4000;
+app.listen(process.env.PORT, () =>
+  console.log(`Server running on port ${process.env.PORT}`)
+);
 
 export default app;
