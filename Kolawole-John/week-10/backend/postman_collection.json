@@ -1,0 +1,139 @@
+{
+  "info": {
+    "name": "SyncForge API",
+    "description": "Task Management API for distributed teams",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Get All Tasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "Get Tasks - Filter by Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks?status=in-progress",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks"],
+          "query": [
+            {
+              "key": "status",
+              "value": "in-progress"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Task by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/{{task_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks", "{{task_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Implement user authentication\",\n  \"description\": \"Add JWT-based authentication to the API with proper validation\",\n  \"assignee\": \"John Doe\",\n  \"priority\": \"high\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"in-progress\",\n  \"priority\": \"urgent\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/{{task_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks", "{{task_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Task",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/{{task_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks", "{{task_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Get Task Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/stats",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "tasks", "stats"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "task_id",
+      "value": ""
+    }
+  ]
+}
