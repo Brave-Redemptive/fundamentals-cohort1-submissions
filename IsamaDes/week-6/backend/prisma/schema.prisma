@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(uuid())
+  name          String
+  email         String        @unique
+  password      String
+  subscription  String?
+  age           Int?
+  healthGoal    String?
+  role          Role          @default(CLIENT)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  loginAttempts Int           @default(0)
+  lockUntil     DateTime?
+  transactions  Transaction[] @relation("user_transactions")
+
+  @@index([role])
+  @@index([subscription])
+}
+
+model Product {
+  id           String        @id @default(uuid())
+  name         String
+  category     String
+  description  String?
+  priceCents   Int
+  createdAt    DateTime      @default(now())
+  transactions Transaction[] @relation("ProductTransactions")
+
+  @@index([category, createdAt])
+  @@index([name])
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  userId      String
+  productId   String
+  amountCents Int
+  status      TxStatus @default(PENDING)
+  createdAt   DateTime @default(now())
+  product     Product  @relation("ProductTransactions", fields: [productId], references: [id])
+  user        User     @relation("user_transactions", fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([status])
+}
+
+model BlacklistedToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([expiresAt])
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+enum TxStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}

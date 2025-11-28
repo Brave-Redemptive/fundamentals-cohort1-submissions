@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: flowserve-backend
+    env: node
+    region: oregon
+    plan: starter
+    branch: main
+    buildCommand: npm ci && npm run prisma:generate && npm run build
+    startCommand: node build/server.js
+    envVars:
+      - key: DATABASE_URL
+        value: "postgresql://mac:1234@localhost:5432/flowserve_db?schema=public"
+      - key: PORT
+        value: "4000"
+      - key: NODE_ENV
+        value: "production"
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "60000"
+      - key: RATE_LIMIT_MAX
+        value: "100"
+      - key: JWT_SECRET
+        fromSecret: JWT_SECRET
+      - key: JWT_REFRESH_SECRET
+        fromSecret: JWT_SECRET
+      - key: REDIS_URL
+        fromKeyValueStore:
+          name: flowserve-redis
+          internal: true
+
+databases:
+  - name: flowserve-postgres
+    databaseName: flowserve_db
+    plan: starter
+    region: oregon
+
+keyValueStores:
+  - name: flowserve-redis
+    plan: starter
+    region: oregon
