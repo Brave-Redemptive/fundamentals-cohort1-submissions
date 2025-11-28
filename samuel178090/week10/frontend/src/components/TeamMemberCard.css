@@ -1,0 +1,55 @@
+.team-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.team-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.team-avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.team-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.team-info p {
+  margin: 0.25rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.role {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.email {
+  color: #7f8c8d;
+  word-break: break-all;
+}
+
+.timezone {
+  color: #e74c3c;
+}

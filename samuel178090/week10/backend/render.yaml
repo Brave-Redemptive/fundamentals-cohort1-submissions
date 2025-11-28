@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: syncforge-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        scope: runtime
+        # Set to your Netlify URL after deployment
+        # value: https://your-app.netlify.app
