@@ -1,0 +1,38 @@
+{
+  "info": {
+    "name": "PayVerse API",
+    "_postman_id": "abc123",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Payment",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fromAccountId\":1,\"toAccountId\":2,\"amount\":100}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/payments",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["payments"]
+        }
+      }
+    },
+    {
+      "name": "Get Payment",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:4000/payments/1",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["payments", "1"]
+        }
+      }
+    }
+  ]
+}
