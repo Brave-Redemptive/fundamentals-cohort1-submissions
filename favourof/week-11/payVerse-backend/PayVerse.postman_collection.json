@@ -1,0 +1,102 @@
+{
+  "info": {
+    "name": "PayVerse API",
+    "_postman_id": "e5fc9b0e-9bfc-4b18-8dc3-e8b7f46e3511",
+    "description": "Postman collection for Week 11 PayVerse backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"favour@test.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"Favour Omotosho\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let json = pm.response.json();",
+                  "pm.environment.set(\"accessToken\", json.accessToken);",
+                  "console.log(\"Access token saved\");"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"favour@test.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Send Money",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"toAccountNumber\": \"{{to_account}}\",\n    \"amount\": 200,\n    \"description\": \"Payment for test\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/transactions/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "transactions", "send"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": []
+}

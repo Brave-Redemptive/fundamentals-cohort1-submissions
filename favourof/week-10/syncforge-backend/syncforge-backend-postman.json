@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "SyncForge Backend API",
+    "_postman_id": "a44e8d9f-1234-4bb0-93e0-xyz123456789",
+    "description": "Postman collection for the Week 10 SyncForge Backend (Node.js + Express + TypeScript)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hello Route",
+      "item": [
+        {
+          "name": "GET /api/hello",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/hello",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "hello"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users Route",
+      "item": [
+        {
+          "name": "GET /api/users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/users",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/users",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"favour\",\n  \"email\": \"favour@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/users",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
