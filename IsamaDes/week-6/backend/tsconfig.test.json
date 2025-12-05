@@ -1,0 +1,27 @@
+// {
+//   "extends": "./tsconfig.json",
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "moduleResolution": "node",
+//     "rootDir": ".",
+//     "baseUrl": ".",
+//     "isolatedModules": true,
+//     "lib": ["es2022"],
+//     "types": ["jest", "node"]
+//   },
+//   "include": ["src", "test"]
+// }
+
+
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "rootDir": ".",
+    "baseUrl": ".",
+     "isolatedModules": true,
+     "lib": ["es2022"],
+    "types": ["jest", "node"]
+  },
+  "include": ["src", "test"]
+}

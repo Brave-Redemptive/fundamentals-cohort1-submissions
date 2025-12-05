@@ -28,7 +28,11 @@ export const AuthProvider: React.FC<{
         setLoading(false);
       }
     };
-    if (window.location.pathname == "/auth/login" || "/auth/sigin") return;
+    if (
+      window.location.pathname == "/auth/login" ||
+      window.location.pathname == "/auth/sigin"
+    )
+      return;
     else tryRefresh();
     console.log(window.location.pathname);
   }, []);
