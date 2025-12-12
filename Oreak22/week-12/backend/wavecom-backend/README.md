@@ -11,7 +11,8 @@ messages through provider integrations. Goals:
 -   Provide observability and job status via a small frontend/dashboard.
 
 ## Architecture Diagram
-    ![Architecture-diagram](https://github.com/user-attachments/assets/edef2453-a1fd-476f-b6ab-64bcc48ae709)
+
+![Architecture-diagram](https://github.com/user-attachments/assets/c055e31c-f0de-4e61-a588-fa28b4d19c3d)
 
     
 ## Components & Responsibilities
