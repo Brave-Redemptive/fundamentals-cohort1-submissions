@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "9c5b6891-79ab-45bf-90ad-578647fac45d",
+		"name": "LegacyBridge API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33609178"
+	},
+	"item": [
+		{
+			"name": "v2/payments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/v2/payments",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"payments"
+					]
+				},
+				"description": "Description: _Integration service bridging legacy PHP API with modern Node.js endpoints._"
+			},
+			"response": []
+		},
+		{
+			"name": "v1/payments",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "health-check",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": ""
+		}
+	]
+}
