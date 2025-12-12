@@ -1,0 +1,49 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: wavecom-mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: wavecom
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: wavecom-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  backend:
+    build: .
+    container_name: wavecom-backend
+    ports:
+      - "5001:5000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/wavecom
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    depends_on:
+      - mongo
+      - rabbitmq
+    volumes:
+      - .:/app
+
+  worker:
+    build: .
+    command: npm run worker
+    depends_on:
+      - mongo
+      - rabbitmq
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/wavecom
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    volumes:
+      - .:/app
+
+volumes:
+  mongo-data:

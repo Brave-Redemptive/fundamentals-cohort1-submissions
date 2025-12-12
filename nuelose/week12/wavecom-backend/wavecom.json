@@ -1,0 +1,156 @@
+{
+  "info": {
+    "name": "WaveCom Notification Delivery API",
+    "description": "Scalable, fault-tolerant transactional notification system\n\n- Supports SMS, Email, Push\n- Automatic retries + Dead Letter Queue\n- Real-time status tracking\n- Built for 50,000+ notifications/minute\n\nWeek 12 Challenge – Full Production-Ready System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "wavecom-notification-api-v1"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Check if API is running"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "body": "WaveCom Notification System API (TypeScript) Running"
+        }
+      ]
+    },
+    {
+      "name": "Create Notification Job",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"sms\",\n  \"to\": \"+2348012345678\",\n  \"payload\": {\n    \"message\": \"Your account has been credited with ₦500,000.00\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/notifications",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "notifications"]
+        },
+        "description": "Queue a new notification job"
+      },
+      "response": [
+        {
+          "name": "Job Queued",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"sms\",\n  \"to\": \"+2348012345678\",\n  \"payload\": {\n    \"message\": \"Your account has been credited\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "notifications"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "body": "{\n  \"success\": true,\n  \"message\": \"Notification queued successfully\",\n  \"data\": {\n    \"_id\": \"693c2e1d589f08e79f68408b\",\n    \"type\": \"sms\",\n    \"to\": \"+2348012345678\",\n    \"payload\": { \"message\": \"Your account has been credited\" },\n    \"status\": \"pending\",\n    \"attempts\": 0,\n    \"createdAt\": \"2025-12-12T15:00:45.700Z\",\n    \"updatedAt\": \"2025-12-12T15:00:45.700Z\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "List All Jobs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/notifications",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "notifications"]
+        },
+        "description": "Get all notification jobs with real-time status"
+      },
+      "response": [
+        {
+          "name": "Jobs List",
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "body": "{\n  \"jobs\": [\n    {\n      \"_id\": \"693c2e1d589f08e79f68408b\",\n      \"type\": \"sms\",\n      \"to\": \"+2348012345678\",\n      \"status\": \"sent\",\n      \"attempts\": 1,\n      \"createdAt\": \"2025-12-12T15:00:45.700Z\"\n    }\n  ],\n  \"total\": 1,\n  \"page\": 1,\n  \"pages\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Single Job",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/notifications/693c2e1d589f08e79f68408b",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "notifications", "693c2e1d589f08e79f68408b"]
+        },
+        "description": "Get detailed status of a specific job"
+      }
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test(\"Response time < 500ms\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(500);",
+          "});",
+          "",
+          "pm.test(\"Status code is 2xx\", function () {",
+          "    pm.response.to.have.status(2**);",
+          "});"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5001",
+      "description": "Change to your deployed URL in production"
+    }
+  ]
+}
