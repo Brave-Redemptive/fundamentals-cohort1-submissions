@@ -12,40 +12,9 @@ messages through provider integrations. Goals:
 
 ## Architecture Diagram
 
-    ┌──────────────┐    HTTPS     ┌────────────────┐     (writes)
-    │  Clients /   │ ───────────> │  API Gateway   │ ───────────────┐
-    │  Dashboard   │              │  (Express.js)  │                │
-    └──────────────┘              └────────────────┘                │
-            ▲                             │                         ▼
-            │                             │                ┌────────────────┐
-            │                             │                │   MongoDB      │
-            │                             │                │ (Jobs + Logs)  │
-            │                             │                └────────────────┘
-            │                             │                          ▲
-            │                             │ publishes jobId          │
-            │                             ▼                          │
-            │                      ┌────────────┐                    │
-            │                      │  RabbitMQ  │────────────────────┘
-            │                      │ (Durable)  │
-            │                      └────────────┘
-            │                             │
-            │                             ▼
-            │                   ┌─────────────────────┐
-            │                   │   Worker Pool       │
-            │                   │ (stateless containers│
-            │                   │  or processes)      │
-            │                   └─────────────────────┘
-            │                             │
-            │                             ▼
-            │               ┌─────────────────────────────┐
-            │               │ Provider Dispatcher / Gate  │
-            │               │  ├→ Provider A (SendGrid)   │
-            │               │  └→ Provider B (Twilio/SES) │
-            │               └─────────────────────────────┘
-            │                             │
-            │                             ▼
-            │                   External Provider Networks
+![Architecture-diagram](https://github.com/user-attachments/assets/c055e31c-f0de-4e61-a588-fa28b4d19c3d)
 
+    
 ## Components & Responsibilities
 
 -   **API (Express/Node.js)** -- Ingests notifications, persists jobs,
